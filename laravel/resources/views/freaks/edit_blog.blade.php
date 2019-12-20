@@ -30,27 +30,31 @@
                     </tr>
                   </thead>
                    
-                
+               @foreach($blog as $b)
                       
                   <tbody>    
-                    <tr>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td><img  src="" height="65px" width="100px"></td>
+                    
+                      
+                       
+                      <tr>
+                     
+                      <td>{{$b->title}}</td>
+                      <td>{{$b->location}}</td>
+                      <td>{{$b->date}}</td>
+                      <td><img  src="\{{$b->image}}" height="65px" width="100px"></td>
                       <td>
-                        <a href="/freaks/edit/"> <button class="btn btn-lg btn-block" type="submit">Edit</button></a>
+                        <a href="{{route('freaks.edit',$b->id)}}"> <button class="btn btn-lg btn-dark" type="submit">Edit</button></a>
                           
                       </td>
                           
                       <td>
-                        <a href="/freaks/delete/"> <button class="btn btn-lg btn-block" type="submit" >Delete</button></a>
+                        <a href="{{route('freaks.delete_blog',$b->id)}}"> <button class="btn btn-lg btn-danger" type="submit" >Delete</button></a>
                       </td>
                         
                     </tr>
                       
                   </tbody>
-
+                @endforeach
                 </table>
                  
                   
@@ -59,6 +63,9 @@
           </div>
         </div>
       </div>
+
+
+
     </main>
 
 @endsection

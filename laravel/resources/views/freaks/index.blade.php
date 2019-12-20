@@ -14,22 +14,22 @@
             <div class="card-body">
 
                 <div class="form-label-group my-4 text-center">
-                  <img src="/images/freaks.png" alt="User Image" height="150px" width="150px" style=" border-radius: 50%;">
+                  <img src="/{{session('freak')[0]['profile_pic']}}" alt="User Image" height="150px" width="150px" style=" border-radius: 50%;">
                 </div>
                 <div class="form-label-group my-4">
-                  <p name="inputName">Name: </p>
-                </div>
-
-                <div class="form-label-group my-4">
-                  <p name="inputName">Email Address: </p>
+                 <strong> <p name="inputName">Name: {{ session('freak')[0]['name'] }} </p> </strong>
                 </div>
 
                 <div class="form-label-group my-4">
-                  <p name="inputName">Phone No: </p>
+                <strong> <p name="inputName">Email Address: {{ session('freak')[0]['email'] }}  </p> </strong> 
                 </div>
 
                 <div class="form-label-group my-4">
-                  <p name="inputName">Gender: </p>
+                 <strong> <p name="inputName">Phone No: {{ session('freak')[0]['phone'] }} </p></strong>
+                </div>
+
+                <div class="form-label-group my-4">
+                  <strong><p name="inputName">Gender: {{ session('freak')[0]['gender'] }} </p></strong>
                 </div>
             </div>
           </div>

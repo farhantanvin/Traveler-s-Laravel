@@ -30,17 +30,24 @@
     Route::group(['middleware'=>['sess']], function(){
 
 
+    Route::post('/blog/comment/{id}','BlogsController@insertComment')->name('blogs.comment');
+
     Route::get('/profile', 'ProfileController@index');
-
-
 
     Route::get('/freaks/index', 'FreaksController@index')->name('freaks.index');
     
 	Route::get('/freaks/index', 'FreaksController@index')->name('freaks.index');
     Route::get('/freaks/edit_profile', 'FreaksController@edit_profile')->name('freaks.edit_profile');
+    Route::post('/freaks/edit_profile', 'FreaksController@updateProfile');
+
     Route::get('/freaks/write_blog', 'FreaksController@write_blog')->name('freaks.write_blog');
+    Route::post('/freaks/write_blog', 'FreaksController@insertBlog');
+
+    Route::get('/freaks/edit/{id}', 'FreaksController@edit')->name('freaks.edit');
+    Route::post('/freaks/edit/{id}', 'FreaksController@updateBlog');
+
     Route::get('/freaks/edit_blog', 'FreaksController@edit_blog')->name('freaks.edit_blog');
-    Route::get('/freaks/delete_blog', 'FreaksController@delete_blog')->name('freaks.delete_blog');
+    Route::get('/freaks/delete_blog/{id}', 'FreaksController@delete_blog')->name('freaks.delete_blog');
     Route::get('/freaks/pin_post', 'FreaksController@pin_post')->name('freaks.pin_post');
     Route::get('/freaks/book_events', 'FreaksController@book_events')->name('freaks.book_events');
     Route::get('/freaks/history', 'FreaksController@history')->name('freaks.history');

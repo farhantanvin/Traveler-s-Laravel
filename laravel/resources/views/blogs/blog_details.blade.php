@@ -47,7 +47,7 @@
                         </div>
 
 
-                        <div class="row">
+                        <div class="row p-4">
                             <div class="col-md-12 text-center wow fadeIn" data-wow-duration="1s" data-wow-delay="0.8s">
                                 <div class="portfolio-share">
                                     <ul class="list-inline">
@@ -56,23 +56,23 @@
                                     </ul>
                                 </div>
                             </div>
-                        </div>
-
+                        </div> 
                         
+                        @if(Session::has('user'))
 
                         <hr class="invis">
 
                         <div class="comment-widget clearfix">
                             <div class="contact-widget">
-                                <h4>Comments</h4>
+                                <h4>{{$count}} Comments</h4>
                                 <hr>
                             </div>
-                
-                            <div class="row">
+                 
+                         <div class="row">
                                 <div class="col-md-12">
                                     <div class="panel panel-info">
                                         <div class="panel-body comments">
-
+                                        @foreach($comment as $c)
                                             <ul class="media-list">
                                                 <li class="media">
                                         
@@ -82,26 +82,20 @@
                                                             <img src="/images/team_01.jpg" alt="" class="img-circle">
                                                         </a>
                                                         <div class="media-body">
-                                                            <strong class="text">name</strong>
-                                                            <span class="text-muted"><small class="text-muted">date</small></span>
+                                                            <strong class="text">{{$c->name}}</strong>
+                                                            <span class="text-muted"><small class="text-muted">{{$c->date}}</small></span>
                                                             
-                                                            <p>
-                                                               text
-                                                            </p>
+                                                             <p>
+                                                               {{$c->text}}
+                                                             </p>
                                                         </div>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                                               @endforeach
+                       
 
                                 
                                                 
 
-                        @if(Session::has('user'))
+                        
                
                         <hr class="invis">
                         <div class="comment-widget clearfix">
@@ -111,7 +105,8 @@
                             </div>
 
                             <div class="contact_form comment-form">
-                                <form class="row" method="post" action="/blog/comment/<%=blog.id%>">
+                                <form class="row" method="post" action="{{route('blogs.comment',$blog[0]['id'])}}">
+                                    @csrf
                                     <div class="col-md-12 col-sm-12">
                                         <label>Comment <span class="required"></span></label>
                                         <textarea class="form-control" id="comment" name="comment" placeholder=""></textarea>
