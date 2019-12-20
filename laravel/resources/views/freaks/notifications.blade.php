@@ -9,11 +9,13 @@
       </div>
 
       
+      @foreach($comment as $c)
 
-      <div class="alert alert-info">
-        <strong><a href="/events/blog_details">"Tittle"</a> </strong>&nbsp blog post is approved by admin.
+      <div class="alert alert-dark">
+        <strong><a href="{{route('blogs.blog_details',$c->postid)}}">"{{$c->name}}" </a> </strong>&nbsp  Comment on your post .
       </div>
 
+      @endforeach
 
 
     </main>

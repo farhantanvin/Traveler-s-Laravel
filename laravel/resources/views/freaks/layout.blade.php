@@ -37,7 +37,7 @@
         <li><a class="app-menu__item {{ Route::is('freaks.edit_blog') ? 'active' : '' }}" href="{{ route('freaks.edit_blog') }}"><i class="app-menu__icon fa fa-file-text"></i><span class="app-menu__label">Edit Blog</span></a></li>
 
         
-        <li><a class="app-menu__item {{ Route::is('freaks.pin_post') ? 'active' : '' }}" href="{{ route('freaks.pin_post') }}"><i class="app-menu__icon fa fa-map-pin"></i><span class="app-menu__label">Pin Post</span></a></li>
+        <li><a class="app-menu__item {{ Route::is('freaks.trash') ? 'active' : '' }}" href="{{ route('freaks.trash') }}"><i class="app-menu__icon fa fa-map-pin"></i><span class="app-menu__label">Trash</span></a></li>
 
         <li><a class="app-menu__item {{ Route::is('freaks.book_events') ? 'active' : '' }}" href="{{ route('freaks.book_events') }}"><i class="app-menu__icon fa fa-file-text"></i><span class="app-menu__label">Book Events</span></a></li>
 

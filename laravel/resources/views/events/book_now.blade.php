@@ -45,8 +45,8 @@
                                         </div>
 
                                         <div class="form-label-group my-4">
-                                            <input type="text" id="inputPrice" name="inputPrice" class="form-control" placeholder="How many person want to book?" required></p>
-                                            <label for="inputPrice">Estimated Price:</label>
+                                            <input type="text" id="pin" name="pin" class="form-control" placeholder="Enter Secret pin:" required></p>
+                                            <label for="pin">Enter Secret pin:</label>
                                         </div>
 
                                         <div class="col-md-12 text-center">

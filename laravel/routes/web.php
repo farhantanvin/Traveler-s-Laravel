@@ -48,7 +48,9 @@
 
     Route::get('/freaks/edit_blog', 'FreaksController@edit_blog')->name('freaks.edit_blog');
     Route::get('/freaks/delete_blog/{id}', 'FreaksController@delete_blog')->name('freaks.delete_blog');
-    Route::get('/freaks/pin_post', 'FreaksController@pin_post')->name('freaks.pin_post');
+    Route::get('/freaks/trash', 'FreaksController@trash')->name('freaks.trash');
+    Route::get('/freaks/restore/{id}', 'FreaksController@restore')->name('freaks.restore');
+
     Route::get('/freaks/book_events', 'FreaksController@book_events')->name('freaks.book_events');
     Route::get('/freaks/history', 'FreaksController@history')->name('freaks.history');
     Route::get('/freaks/messages', 'FreaksController@messages')->name('freaks.messages');

@@ -10,27 +10,27 @@
       </div>
 
       
-        <% for(var i=0 ; i < booking.length; i++ ) { %>
+      @foreach($booking as $b)
 
-      <div class="alert alert-info">
-        <strong><a href="/events/event_details/<%=booking[i].eventid%>">"THIS EVENT " </a> </strong>&nbsp you Have to Register at <%=booking[i].date %>
+      <div class="alert alert-warning">
+        <strong><a href="{{route('events.event_details',$b->eventid)}}">"THIS EVENT " </a> </strong>&nbsp You Have to Register at {{$b->date}}
       </div>
-    <% } %>
+      @endforeach
         
         
-      <% for(var i=0 ; i < data.length; i++ ) { %>
+      @foreach($comment as $c)
 
-      <div class="alert alert-danger">
-        <strong><a href="/blog/blog_details/<%=data[i].postid%>">"COMMENT" </a> </strong>&nbsp  you posted a Comment..<%=data[i].date %>
+      <div class="alert alert-secondary">
+        <strong><a href="{{route('blogs.blog_details',$c->postid)}}">"COMMENT" </a> </strong>&nbsp You posted a Comment at {{$c->date}}.
       </div>
-    <% } %>
+      @endforeach
         
-           <% for(var i=0 ; i < notification.length; i++ ) { %>
+      @foreach($notification as $n)
 
-      <div class="alert alert-sucess">
-        <strong><a href="/events/event_details/<%=notification[i].eventid%>">"REPORT" </a> </strong>&nbsp to Admin on  <%=notification[i].date %>
+      <div class="alert alert-primary">
+        <strong><a href="{{route('events.event_details',$n->eventid)}}">"REPORT" </a> </strong>&nbsp to Admin on  {{$n->date}}
       </div>
-    <% } %>
+      @endforeach
         
 
     </main>

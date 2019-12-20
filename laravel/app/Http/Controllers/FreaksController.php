@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\user;
 use App\blog;
 use App\freak;
+use App\comment;
+use Illuminate\Support\Facades\DB;
 
 class FreaksController extends Controller
 {
@@ -177,18 +179,18 @@ class FreaksController extends Controller
 					  ->where('status',1)
 					  -> get();
 
-		//dd($blog);
+		
 
 		return view('freaks.edit_blog')->with('blog',$blog);
 	}
 
 	public function delete_blog($id){
 		
-		//dd($id);
+		
 
 		$blog = blog::find($id);
 
-		//dd($blog);
+		
 		$blog->status='0';
 
         
@@ -202,23 +204,69 @@ class FreaksController extends Controller
 
 	}
 
-	public function pin_post(){
-		return view('freaks.pin_post');
+	public function trash(Request $req){
+
+
+		$blog = blog::where('postby',$req->session()->get('user')[0]['email'])
+					  ->where('status',0)
+					  -> get();
+		return view('freaks.trash')->with('blog',$blog);
 	}
+
+
+	public function restore(Request $req,$id){
+
+
+		$blog = blog::find($id);
+
+		
+		$blog->status='1';
+
+        
+        if($blog->save()){
+
+            return redirect()->route('freaks.trash');
+        }else{
+            return redirect()->route('freaks.trash');
+                                                    
+        }
+	
+	}
+
+
 
 	public function book_events(){
 		return view('freaks.book_events');
 	}
 
-	public function history(){
-		return view('freaks.history');
+	public function history(Request $req){
+
+		$booking = DB::table('booking')->where('bookedby', $req->session()->get('user')[0]['email'])->get();
+		
+		$notification= DB::table('notification')->where('postby', $req->session()->get('user')[0]['email'])->get();
+
+
+		$comment=comment::where('postby',$req->session()->get('user')[0]['email'])
+		 				 ->get();
+
+
+		return view('freaks.history')->with('comment',$comment)
+									 ->with('booking',$booking)
+									 ->with('notification',$notification);
+
 	}
 
 	public function messages(){
 		return view('freaks.messages');
 	}
 
-	public function notifications(){
-		return view('freaks.notifications');
+	public function notifications(Request $req){
+
+		
+		$comment=comment::where('blogpostemail',$req->session()->get('user')[0]['email'])
+		 				 ->get();
+
+		//dd($comment);
+		return view('freaks.notifications')->with('comment',$comment);
 	}
 }
