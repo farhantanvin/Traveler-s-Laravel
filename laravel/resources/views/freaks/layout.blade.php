@@ -46,6 +46,9 @@
         <li><a class="app-menu__item {{ Route::is('freaks.messages') ? 'active' : '' }}" href="{{ route('freaks.messages') }}"><i class="app-menu__icon fa fa-inbox"></i><span class="app-menu__label">Messages</span></a></li>
 
         <li><a class="app-menu__item {{ Route::is('freaks.notifications') ? 'active' : '' }}" href="{{ route('freaks.notifications') }}"><i class="app-menu__icon fa fa-bell"></i><span class="app-menu__label">Notifications</span></a></li>
+
+
+        <li><a class="app-menu__item {{ Route::is('freaks.analytics') ? 'active' : '' }}" href="{{ route('freaks.analytics') }}"><i class="app-menu__icon fa fa-file-text"></i><span class="app-menu__label">Analytics</span></a></li>
       </ul>
     </aside>
 

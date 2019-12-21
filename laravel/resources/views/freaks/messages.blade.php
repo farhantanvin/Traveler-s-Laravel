@@ -16,7 +16,7 @@
             <div class="tile-body">
               <div class="table-responsive">
                    
-                <table class="table table-hover table-bordered" id="sampleTable">
+                <table class="table table-hover " id="sampleTable">
                       
                   <strong> INBOX</strong> </br>  </br> 
             @foreach($message as $m)

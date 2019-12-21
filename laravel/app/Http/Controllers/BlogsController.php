@@ -12,9 +12,11 @@ class BlogsController extends Controller
     public function index(){
 
     	$blogCount=blog::all()
+    				->where('status',1)
     			   ->count();
 
-    	$blog=blog::all();
+    	$blog=blog::all()
+    			->where('status',1);
 
 
 		return view('blogs.index')->with('count',$blogCount)

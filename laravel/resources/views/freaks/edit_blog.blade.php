@@ -8,6 +8,7 @@
           <h1>Edit Blog</h1>
         </div>
       </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
     
       <div class="row">
@@ -15,7 +16,12 @@
           <div class="tile">
             <div class="tile-body">
               <div class="table-responsive">
-                  
+                   <div class="panel-heading"> &nbsp <p class="text-center"><strong>Search Blogs</strong>  </p>  
+                   </div>
+                    <div class="panel-body">
+                     <div class="form-group">
+                      <input type="text" name="search" id="search" class="form-control" placeholder="Search" />
+                     </div>
                 <table class="table table-hover " id="sampleTable">
              
                   <thead class="thead-dark"> 
@@ -29,32 +35,13 @@
                       <th>Delete Blog</th>
                     </tr>
                   </thead>
-                   
-               @foreach($blog as $b)
                       
                   <tbody>    
                     
                       
-                       
-                      <tr>
-                     
-                      <td>{{$b->title}}</td>
-                      <td>{{$b->location}}</td>
-                      <td>{{$b->date}}</td>
-                      <td><img  src="\{{$b->image}}" height="65px" width="100px"></td>
-                      <td>
-                        <a href="{{route('freaks.edit',$b->id)}}"> <button class="btn btn-lg btn-dark" type="submit">Edit</button></a>
-                          
-                      </td>
-                          
-                      <td>
-                        <a href="{{route('freaks.delete_blog',$b->id)}}"> <button class="btn btn-lg btn-danger" type="submit" >Delete</button></a>
-                      </td>
-                        
-                    </tr>
                       
                   </tbody>
-                @endforeach
+               
                 </table>
                  
                   
@@ -64,9 +51,37 @@
         </div>
       </div>
 
-
-
     </main>
+
+      <script>
+      $(document).ready(function(){
+
+       fetch_customer_data();
+
+       function fetch_customer_data(query = '')
+       {
+        $.ajax({
+         url:"{{ route('freaks.action') }}",
+         method:'GET',
+         data:{query:query},
+         dataType:'json',
+         success:function(data)
+         {
+          $('tbody').html(data.table_data);
+          $('#total_records').text(data.total_data);
+         }
+        })
+       }
+
+       $(document).on('keyup', '#search', function(){
+        var query = $(this).val();
+        fetch_customer_data(query);
+       });
+      });
+
+      </script>
+
+
 
 @endsection
 

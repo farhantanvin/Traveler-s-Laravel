@@ -13,6 +13,7 @@ class HomeController extends Controller
      {
 
     	$blog = blog::all()
+                ->where('status',1)
                ->take(3);
 
         $event =event::all()

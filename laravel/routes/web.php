@@ -29,6 +29,8 @@
 
     Route::group(['middleware'=>['sess']], function(){
 
+
+
     Route::get('/events/book/cancel/{id}{eid}','EventsController@CancelEvent')->name('event.eventCancel');
 
     Route::post('/events/book_now/{id}', 'EventsController@bookEvent');
@@ -63,7 +65,10 @@
     Route::post('/freaks/messages/sent/{id}', 'FreaksController@messagesStore');
 
     Route::get('/freaks/notifications', 'FreaksController@notifications')->name('freaks.notifications');
+    
+    Route::get('/freaks/analytics', 'FreaksController@analytics')->name('freaks.analytics');
 
+    Route::get('/freaks/action', 'FreaksController@action')->name('freaks.action');
 
     Route::get('/travel_agency/index', 'TravelAgencyController@index')->name('travel_agency.index');
     Route::get('/travel_agency/edit_profile', 'TravelAgencyController@edit_profile')->name('travel_agency.edit_profile');

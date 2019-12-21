@@ -16,7 +16,7 @@
             <div class="tile-body">
               <div class="table-responsive">
                   
-                <table class="table table-hover table-bordered" id="sampleTable">
+                <table class="table table-hover " id="sampleTable">
              
                   <thead class="thead-dark"> 
                    
@@ -33,10 +33,7 @@
                    
                @foreach($booking as $b)
                       
-                  <tbody>    
-                    
-                      
-                       
+                  <tbody>      
                       <tr>
                       <td>{{$b->eventtitle}}</td>
                       <td>{{$b->agencyname}}</td>

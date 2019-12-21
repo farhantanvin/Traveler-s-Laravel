@@ -22,6 +22,7 @@ class FreaksController extends Controller
 	}
 
 	public function edit_profile(){
+
 		return view('freaks.edit_profile');
 	}
 
@@ -179,9 +180,8 @@ class FreaksController extends Controller
 					  ->where('status',1)
 					  -> get();
 
-		
 
-		return view('freaks.edit_blog')->with('blog',$blog);
+		return view('freaks.edit_blog');
 	}
 
 	public function delete_blog($id){
@@ -307,6 +307,110 @@ class FreaksController extends Controller
 		 				 ->get();
 
 		//dd($comment);
+
 		return view('freaks.notifications')->with('comment',$comment);
 	}
+
+	public function analytics(Request $req){
+
+		
+		$commentCount = DB::table('comments')
+				 ->where('postby',$req->session()->get('user')[0]['email'])
+				 ->count();
+
+		$postCount = DB::table('blogs')
+				 ->where('postby',$req->session()->get('user')[0]['email'])
+				 ->count();
+
+		$deleteCount = DB::table('blogs')
+				 ->where('postby',$req->session()->get('user')[0]['email'])
+				 ->where('status',0)
+				 ->count();
+		$ReportCount = DB::table('notification')
+				 ->where('postby',$req->session()->get('user')[0]['email'])
+				 ->count();
+		$cost=DB::select('select sum(cost) AS cost from booking where bookedby = ?', [$req->session()->get('user')[0]['email']]);
+
+		//dd($cost[0]->cost);
+		return view('freaks.analytics')->with('c',$commentCount)
+									   ->with('p',$postCount)
+									   ->with('d',$deleteCount)
+									   ->with('r',$ReportCount)
+									   ->with('cost',$cost[0]->cost);
+	}
+
+
+
+
+
+	public function action(Request $request)
+    {
+     if($request->ajax())
+     {
+      $output = '';
+      $query = $request->get('query');
+      if($query != '')
+      {
+       $data = DB::table('blogs')
+         ->where('title', 'like', '%'.$query.'%')
+         ->orWhere('location', 'like', '%'.$query.'%')
+         ->orWhere('date', 'like', '%'.$query.'%')
+         ->orWhere('description', 'like', '%'.$query.'%')
+         ->where('postby',$request->session()->get('user')[0]['email'])
+         ->where('status',1)
+         ->get();
+         
+      }
+      else
+      {
+       $data = DB::table('blogs')
+         ->where('postby',$request->session()->get('user')[0]['email'])
+         ->where('status',1)
+         ->get();
+      }
+      $total_row = $data->count();
+      if($total_row > 0)
+      {
+       foreach($data as $row)
+       {
+        $output .= '
+        <tr>
+         <td>'.$row->title.'</td>
+         <td>'.$row->location.'</td>
+         <td>'.$row->date.'</td>
+         <td><img  src="/'.$row->image.'" height="65px" width="100px"></td>
+         <td>
+    		<a href="/freaks/edit/'.$row->id.'"> <button class="btn btn-lg btn-dark" type="submit">Edit</button></a>
+         </td>
+         <td>
+          <a href="/freaks/delete_blog/'.$row->id.'"> <button class="btn btn-lg btn-danger" type="submit" >Delete</button></a>
+         </td>
+
+        </tr>
+        ';
+       }
+      }
+      else
+      {
+       $output = '
+       <tr>
+        <td align="center" colspan="5">No Data Found</td>
+       </tr>
+       ';
+      }
+      $data = array(
+       'table_data'  => $output,
+       'total_data'  => $total_row
+      );
+
+      echo json_encode($data);
+     }
+    }
+
+
+
+	
+
+
+
 }

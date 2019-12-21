@@ -48,7 +48,7 @@ class RegistrationController extends Controller
         $freak->phone =$req->phone;
         $freak->gender =$req->gender;
         $freak->password =$req->password;
-        $freak->profile_pic='/abc';
+        $freak->profile_pic='images\freaks.png';
 
 
 		$user = new user();
@@ -106,7 +106,7 @@ class RegistrationController extends Controller
         $agencies->phone =$req->phone;
         $agencies->gender =$req->gender;
         $agencies->password =$req->password;
-        $agencies->profile_pic='/abc';
+        $agencies->profile_pic='images\freaks.png';
 
 
         $user = new user();
