@@ -235,8 +235,10 @@ class FreaksController extends Controller
 
 
 
-	public function book_events(){
-		return view('freaks.book_events');
+	public function book_events(Request $req){
+
+		$booking = DB::table('booking')->where('bookedby', $req->session()->get('user')[0]['email'])->get();
+		return view('freaks.book_events')->with('booking',$booking);
 	}
 
 	public function history(Request $req){
@@ -256,9 +258,47 @@ class FreaksController extends Controller
 
 	}
 
-	public function messages(){
-		return view('freaks.messages');
+	public function messages(Request $req){
+
+
+		$user = user::where('email','!=',$req->session()->get('user')[0]['email'])
+        				->get();
+        
+
+		$message = DB::table('message')->where('reciver',$req->session()->get('user')[0]['email'])->get();
+
+		return view('freaks.messages')->with('message',$message)
+									  ->with('user',$user);
 	}
+
+
+
+	public function messagesSent($id,Request $req){
+
+		return view('freaks.sendMessage');
+
+	}
+
+	public function messagesStore($id,Request $req){
+		$user = user::where('id',$id)
+        				->get();
+        
+        $todayDate = date("Y-m-d h:m");
+		
+			DB::table('message')->insert(
+			    ['sender' =>$req->session()->get('user')[0]['email'], 
+			     'sendername'=>$req->session()->get('user')[0]['name'],
+			     'reciver'=>$user[0]['email'],
+			     'text'=>$req->message,
+			     'date'=>$todayDate		
+			     ]);
+
+		
+			return redirect()->route('freaks.messages');
+
+	}
+
+
 
 	public function notifications(Request $req){
 

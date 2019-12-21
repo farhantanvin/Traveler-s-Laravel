@@ -26,7 +26,8 @@
                     <div class="col-md-12">
                         <div class="widget">
                             <div class="blog-single">
-                                <form method="post">
+                                <form method="post"  >
+                                    @csrf
                                     <div class="post-media wow fadeIn">
                                         <img src="{{$e->image}}" alt="" class="img-responsive">
                                     </div>
@@ -45,7 +46,7 @@
                                         </div>
 
                                         <div class="form-label-group my-4">
-                                            <input type="text" id="pin" name="pin" class="form-control" placeholder="Enter Secret pin:" required></p>
+                                            <input type="password" id="pin" name="pin" class="form-control" placeholder="Enter Secret pin:" required></p>
                                             <label for="pin">Enter Secret pin:</label>
                                         </div>
 

@@ -17,52 +17,48 @@
               <div class="table-responsive">
                    
                 <table class="table table-hover table-bordered" id="sampleTable">
-                      <form class="form-signin" method="post">  
-                 
-            <% for(var i=0 ; i < data.length; i++ ) { %>
+                      
+                  <strong> INBOX</strong> </br>  </br> 
+            @foreach($message as $m)
 
               <div class="alert alert-info">
-                <strong><a href="">"<%=data[i].sendername %>" </a> </strong>&nbsp  sent you:&nbsp;  <strong><%=data[i].text%></strong>    
-           &nbsp; &nbsp;  &nbsp; at &nbsp;  <%=data[i].date %>
+                <strong><a href="">"{{$m->sendername}}" </a> </strong>&nbsp  sent you:&nbsp;  <strong>{{$m->text}}</strong>    
+           &nbsp; &nbsp;  &nbsp; at &nbsp; {{$m->date}}
             </div>
-            <% } %>
+            @endforeach
      
-                          
-                <thead> 
+               </br>  </br>            
+                <thead class="thead-dark"> 
             
                     <tr>
-                      <th>Send Message to</th>
-                      <th> user type   </th>
-                       <th> write message  </th>
-                      <th>  </th>
+                      <th>Send Message To</th>
+                      <th> user type </th>
+                      <th>&nbsp&nbsp&nbspSend Message</th>
                     </tr>
                   </thead>
                           
     
                    
-                 <% for(var i=0 ; i < freaks.length; i++ ) { %>
+                 @foreach($user as $u)
                       
-                  <tbody>    
-                    
-                      
+                  <tbody>     
                        
                       <tr>
                      
-                      <td><%=freaks[i].name%></td>
-                      <td> <%=freaks[i].user_type%></td>
-                       <td> <input type="text" id="reciver" name="reciver"> </td> 
-                      <td>
-                        <input type="hidden" name="rmail" value="<%=freaks[i].email%>">
-                        <a href="/freaks/messages/<%=freaks[i].email%>/name"> <button class="btn btn-lg btn-block" type="submit" value="submit">send message </button></a>
+                      <td>{{$u->name}}</td>
+                      <td>{{$u->user_type}}</td>
+                      
+                         <td>
+                        <a href="{{route('freaks.messages.sent',$u->id)}}"> <button class="btn btn-info" type="submit" value="submit">send message </button> </a>
+                       </td>
+                                          
                           
-                      </td>
-                          
-                     </from>
+                     
                         
                     </tr>
                       
                   </tbody>
-                <% }%>
+                @endforeach
                     
                 </table> 
               </div>

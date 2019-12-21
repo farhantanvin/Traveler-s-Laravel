@@ -16,9 +16,9 @@
             <div class="tile-body">
               <div class="table-responsive">
                   
-                <table class="table table-hover table-bordered" id="sampleTable">
+                <table class="table table-hover " id="sampleTable">
              
-                  <thead> 
+                  <thead class="thead-dark"> 
                    
                     <tr>
                       <th>Tittle</th>
