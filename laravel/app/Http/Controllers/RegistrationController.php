@@ -49,7 +49,7 @@ class RegistrationController extends Controller
         $freak->gender =$req->gender;
         $freak->password =$req->password;
         $freak->profile_pic='images\freaks.png';
-
+        $freak->layout='/css/freaks.css';
 
 		$user = new user();
         $user->name = $req->name;

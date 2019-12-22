@@ -70,6 +70,12 @@
 
     Route::get('/freaks/action', 'FreaksController@action')->name('freaks.action');
 
+    Route::get('/freaks/settings', 'FreaksController@settings')->name('freaks.settings');
+    Route::post('/freaks/settings', 'FreaksController@settingsSave');
+
+
+
+    //Travel agencies
     Route::get('/travel_agency/index', 'TravelAgencyController@index')->name('travel_agency.index');
     Route::get('/travel_agency/edit_profile', 'TravelAgencyController@edit_profile')->name('travel_agency.edit_profile');
     Route::get('/travel_agency/offer_events', 'TravelAgencyController@offer_events')->name('travel_agency.offer_events');

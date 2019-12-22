@@ -47,16 +47,6 @@
                         </div>
 
 
-                        <div class="row p-4">
-                            <div class="col-md-12 text-center wow fadeIn" data-wow-duration="1s" data-wow-delay="0.8s">
-                                <div class="portfolio-share">
-                                    <ul class="list-inline">
-                                        <li><a href=""><i class="fab fa-facebook-f"></i> Like it</a></li>
-                                        <li><a href=""><i class="far fa-save"></i></i> Pin it</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div> 
                         
                         @if(Session::has('user'))
 

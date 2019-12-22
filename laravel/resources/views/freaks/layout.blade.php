@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <title>@yield('title')</title>
-    <link rel="stylesheet" type="text/css" href="/css/freaks.css">
+    <link rel="stylesheet" type="text/css" href="{{ session('freak')[0]['layout'] }}">
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/css/registration.css">
     
@@ -49,6 +49,9 @@
 
 
         <li><a class="app-menu__item {{ Route::is('freaks.analytics') ? 'active' : '' }}" href="{{ route('freaks.analytics') }}"><i class="app-menu__icon fa fa-file-text"></i><span class="app-menu__label">Analytics</span></a></li>
+
+        <li><a class="app-menu__item {{ Route::is('freaks.settings') ? 'active' : '' }}" href="{{ route('freaks.settings') }}"><i class="app-menu__icon fa fa-file-text"></i><span class="app-menu__label">settings</span></a></li>
+
       </ul>
     </aside>
 

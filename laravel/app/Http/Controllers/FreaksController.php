@@ -408,9 +408,29 @@ class FreaksController extends Controller
     }
 
 
+    public function settings(Request $req){
 
+		return view('freaks.settings');
+
+	}
 	
+	public function settingsSave(Request $req){
 
+
+
+		$freak = freak::find($req->session()->get('freak')[0]['id']);
+      
+        $freak->layout = $req->theme;
+        
+        if($freak->save()){
+
+            return redirect()->route('freaks.index');
+        }else{
+            return redirect()->route('freaks.settings');
+                                                    
+        }
+		
+	}
 
 
 }
