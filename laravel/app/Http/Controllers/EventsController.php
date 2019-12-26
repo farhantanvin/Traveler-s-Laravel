@@ -71,7 +71,7 @@ class EventsController extends Controller
 		if($e->save()){
 
 
-            return redirect()->route('freaks.book_events');
+            return redirect()->route('events.book_now',$id);
 
         }else{
             return redirect()->route('events.book_now',$id);

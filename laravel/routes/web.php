@@ -73,6 +73,7 @@
     Route::get('/freaks/settings', 'FreaksController@settings')->name('freaks.settings');
     Route::post('/freaks/settings', 'FreaksController@settingsSave');
 
+    Route::get('/freaks/report', 'FreaksController@pdf')->name('freaks.report');
 
 
     //Travel agencies

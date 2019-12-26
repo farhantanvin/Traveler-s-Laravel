@@ -7,10 +7,15 @@ use App\user;
 use App\blog;
 use App\freak;
 use App\comment;
+use PDF;
 use Illuminate\Support\Facades\DB;
 
 class FreaksController extends Controller
 {
+
+
+	public $email;
+
     public function index(Request $req){
 
     	$freak=freak::where('email',$req->session()->get('user')[0]['email'])
@@ -306,7 +311,6 @@ class FreaksController extends Controller
 		$comment=comment::where('blogpostemail',$req->session()->get('user')[0]['email'])
 		 				 ->get();
 
-		//dd($comment);
 
 		return view('freaks.notifications')->with('comment',$comment);
 	}
@@ -331,7 +335,9 @@ class FreaksController extends Controller
 				 ->count();
 		$cost=DB::select('select sum(cost) AS cost from booking where bookedby = ?', [$req->session()->get('user')[0]['email']]);
 
-		//dd($cost[0]->cost);
+		//dd($deleteCount);
+
+
 		return view('freaks.analytics')->with('c',$commentCount)
 									   ->with('p',$postCount)
 									   ->with('d',$deleteCount)
@@ -431,6 +437,74 @@ class FreaksController extends Controller
         }
 		
 	}
+
+
+	public function pdf(Request $req)
+    {
+
+     $pdf = \App::make('dompdf.wrapper');
+     $pdf->loadHTML($this->convert_Report_data_to_html($req));
+     return $pdf->stream();
+    
+    }
+
+   
+
+
+
+    public function convert_Report_data_to_html($req)
+    {
+     	
+
+     $commentCount = DB::table('comments')
+				 ->where('postby',$req->session()->get('user')[0]['email'])
+				 ->count();
+
+		$postCount = DB::table('blogs')
+				 ->where('postby',$req->session()->get('user')[0]['email'])
+				 ->count();
+
+		$deleteCount = DB::table('blogs')
+				 ->where('postby',$req->session()->get('user')[0]['email'])
+				 ->where('status',0)
+				 ->count();
+		$ReportCount = DB::table('notification')
+				 ->where('postby',$req->session()->get('user')[0]['email'])
+				 ->count();
+		$cost=DB::select('select sum(cost) AS cost from booking where bookedby = ?', [$req->session()->get('user')[0]['email']]);
+
+
+
+	     $output = '
+	     <h3 align="center">Analysis Report</h3>
+	     <table width="100%" style="border-collapse: collapse; border: 0px;">
+	    <tr>
+		    <th style="border: 1px solid; padding:12px;" width="20%">Total Posted Blog</th>
+		    <th style="border: 1px solid; padding:12px;" width="30%">Total Comment</th>
+		    <th style="border: 1px solid; padding:12px;" width="15%">Total Delete Blog</th>
+		    <th style="border: 1px solid; padding:12px;" width="15%">Total Report to Admin</th>
+		    <th style="border: 1px solid; padding:12px;" width="20%">Total Cost</th>
+	   </tr>
+	     ';  
+	     
+	      $output .= '
+	      <tr>
+		       <td style="border: 1px solid; padding:12px;">'.$commentCount.'</td>
+		       <td style="border: 1px solid; padding:12px;">'.$postCount.'</td>
+		       <td style="border: 1px solid; padding:12px;">'.$deleteCount.'</td>
+		       <td style="border: 1px solid; padding:12px;">'.$ReportCount.'</td>
+		       <td style="border: 1px solid; padding:12px;">'.$cost[0]->cost.'</td>
+	      </tr>
+	      ';
+	     
+	     $output .= '</table>';
+	     return $output;
+   
+
+    }
+
+
+
 
 
 }
