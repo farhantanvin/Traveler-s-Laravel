@@ -3,7 +3,7 @@
     <main class="app-content">
       <div class="app-title">
         <div>
-          <h1>Edit Events</h1>
+          <h1>Delete Events</h1>
         </div>
       </div>
 
@@ -26,24 +26,29 @@
                       <th>Image</th>
                     </tr>
                   </thead>
-                 
+                  
+               @foreach($events as $e)
+
                   <tbody>
                     <tr>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td><img src="" height="65px" width="100px"></td>
+                      <td>{{$e->title }}</td>
+                      <td>{{$e->agencyname }}</td>
+                      <td>{{$e->place }}</td>
+                      <td>{{$e->date }}</td>
+                      <td>{{$e->duration }}</td>
+                      <td>{{$e->description }}</td>
+                      <td>{{$e->person_capacity }}</td>
+                      <td>{{$e->cost_per_person }}</td>
+                      <td><img src="/{{$e->image }}" height="65px" width="100px"></td>
                       <td>
-                        <a href="/travel_agency/delete/"> <button class="btn btn-lg btn-block" type="submit">Delete</button></a>
+                        <a href="{{route('travel_agency.delete', $e->id)}}"> <button class="btn btn-danger btn-lg btn-block" type="submit">Delete</button></a>
                       </td>
                     </tr>
                   </tbody>
-                  
+
+              @endforeach
+
+                    </div>   
                 </table>
               </div>
             </div>
@@ -51,8 +56,10 @@
         </div>
       </div>
 
+
+
     </main>
-    @endsection
+@endsection
 
 @section('title')
 Delete Events

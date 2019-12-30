@@ -50,13 +50,16 @@ class RegistrationController extends Controller
         $freak->password =$req->password;
         $freak->profile_pic='images\freaks.png';
         $freak->layout='/css/freaks.css';
+        $freak->status='1';
+
 
 		$user = new user();
         $user->name = $req->name;
         $user->email =$req->email;
         $user->password =$req->password;
         $user->user_type ='freaks';
-        $user->active_status ='1';
+        $user->status ='1';
+        $user->profile_pic ='images\freaks.png';
         
 
         if($user->save()&&$freak->save()){
@@ -107,15 +110,15 @@ class RegistrationController extends Controller
         $agencies->gender =$req->gender;
         $agencies->password =$req->password;
         $agencies->profile_pic='images\freaks.png';
-
+        $agencies->status ='1';
 
         $user = new user();
         $user->name = $req->name;
         $user->email =$req->email;
         $user->password =$req->password;
         $user->user_type ='agencies';
-        $user->active_status ='1';
-
+        $user->status ='1';
+        $user->profile_pic='images\freaks.png';
 
 
 

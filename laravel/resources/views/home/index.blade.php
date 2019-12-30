@@ -11,8 +11,10 @@
     
 
 
-    @if(Session::has('user')) 
+    @if(Session::has('loginuser')) 
     @include('common.user_header')
+    @elseif(Session::has('admin')) 
+    @include('common.adminheader')
     @else
     @include('common.header')
     @endif

@@ -12,7 +12,7 @@
 	    <div class="row">
 
 	    <div class="label col-12 text-center">
-	      <a href=""><img class="label-image my-3" src="/images/logo.png" height="160" width="160"></a>
+	      <a href="{{route('home.index')}}"><img class="label-image my-3" src="/images/logo.png" height="160" width="160"></a>
 	    </div>
 
 	      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
@@ -41,7 +41,16 @@
 	                 <p>Don't have an account? <a href="{{ route('registration.index') }}">Create Account</a></p>
 	              </div>
 	            </form>
+
+	             @if (Session::has('msg'))
+              <div class="alert alert-danger">
+                  <ul>
+                     <li>{{ session('msg')  }}</li>
+                  </ul>
+              </div>
+          @endif
 	          </div>
+
 	        </div>
 	      </div>
 	    </div>

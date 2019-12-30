@@ -270,7 +270,9 @@ class FreaksController extends Controller
         				->get();
         
 
-		$message = DB::table('message')->where('reciver',$req->session()->get('user')[0]['email'])->get();
+		$message = DB::table('message')->where('reciever',$req->session()->get('user')[0]['email'])->get();
+
+		//dd($message);
 
 		return view('freaks.messages')->with('message',$message)
 									  ->with('user',$user);
@@ -293,9 +295,10 @@ class FreaksController extends Controller
 			DB::table('message')->insert(
 			    ['sender' =>$req->session()->get('user')[0]['email'], 
 			     'sendername'=>$req->session()->get('user')[0]['name'],
-			     'reciver'=>$user[0]['email'],
-			     'text'=>$req->message,
-			     'date'=>$todayDate		
+			     'reciever'=>$user[0]['email'],
+			     'message'=>$req->message,
+			     'date'=>$todayDate,
+			     'read_status'=>'0'		
 			     ]);
 
 		

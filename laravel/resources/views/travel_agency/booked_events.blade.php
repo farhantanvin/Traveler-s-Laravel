@@ -21,20 +21,22 @@
                       <th>Agency name</th>
                       <th>Booked By</th>
                       <th>Booked By(Name)</th>
-                      <th>Date</th>
+                      <th>Date</th>  
                     </tr>
                   </thead>
                   
+              @foreach($booking as $b)
                   <tbody>
                     <tr>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
+                      <td>{{$b->eventtitle }}</td>
+                      <td>{{$b->agencyname }}</td>
+                      <td>{{$b->bookedby }}</td>
+                      <td>{{$b->bookedby_name }}</td>
+                      <td>{{$b->date }}</td>
                     </tr>
                   </tbody>
                   
+              @endforeach
                 </table>
               </div>
             </div>

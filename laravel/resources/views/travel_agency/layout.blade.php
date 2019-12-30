@@ -19,13 +19,15 @@
     </header>
 
     <aside class="app-sidebar">
-      <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="/images/freaks.png" alt="User Image" height="50px" width="50px" style=" border-radius: 50%;">
+      <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="/{{ session('travel_agencies')[0]['profile_pic'] }}" alt="User Image" height="50px" width="50px" style=" border-radius: 50%;">
         <div>
-          <p class="app-sidebar__user-name">Name</p>
-          <p class="app-sidebar__user-designation">Type</p>
+          <p class="app-sidebar__user-name">{{ session('user')[0]['name'] }}</p>
+          <p class="app-sidebar__user-designation">{{ session('user')[0]['user_type'] }}</p>
         </div>
       </div>
       <ul class="app-menu">
+        <li><a class="app-menu__item {{ Route::is('travel_agency.dashboard') ? 'active' : '' }}" href="{{ route('travel_agency.dashboard') }}"><i class="app-menu__icon fa fa-file-text"></i><span class="app-menu__label">Dashboard</span></a></li>
+
         <li><a class="app-menu__item {{ Route::is('travel_agency.index') ? 'active' : '' }}" href="{{ route('travel_agency.index') }}"><i class="app-menu__icon fa fa-user"></i><span class="app-menu__label">Profile</span></a></li>
 
         <li><a class="app-menu__item {{ Route::is('travel_agency.edit_profile') ? 'active' : '' }}" href="{{ route('travel_agency.edit_profile') }}"><i class="app-menu__icon fa fa-user"></i><span class="app-menu__label">Edit Profile</span></a></li>
@@ -53,5 +55,6 @@
     <script src="/js/popper.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/main.js"></script>
+    <script src="/js/canvasjs.min.js"></script>
   </body>
 </html>

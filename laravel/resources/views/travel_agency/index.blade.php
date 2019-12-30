@@ -12,27 +12,31 @@
           <div class="card card-signin my-4">
             <div class="card-body">
                 <div class="form-label-group my-4 text-center">
-                  <img src="/images/freaks.png" alt="User Image" height="150px" width="150px" style=" border-radius: 50%;">
+                  <img src="/{{ session('travel_agencies')[0]['profile_pic'] }}" alt="User Image" height="150px" width="150px" style=" border-radius: 50%;">
                 </div>
+
+          @foreach($agency as $a)
                 <div class="form-label-group my-4">
-                  <p name="inputName">Name:   </p>
+                  <p name="inputName"><b>Name:</b>&nbsp {{$a->name}}</p>
                 </div>
 
                 <div class="form-label-group my-4">
-                  <p name="inputAgency">Agency Name:   </p>
+                  <p name="inputAgency"><b>Agency Name:</b>&nbsp {{$a->agency_name}}</p>
                 </div>
 
                 <div class="form-label-group my-4">
-                  <p name="inputName">Email Address:  </p>
+                  <p name="inputName"><b>Email Address:</b>&nbsp {{$a->email}}</p>
                 </div>
 
                 <div class="form-label-group my-4">
-                  <p name="inputName">Phone No: </p>
+                  <p name="inputName"><b>Phone No:</b>&nbsp {{$a->phone}}</p>
                 </div>
 
                 <div class="form-label-group my-4">
-                  <p name="inputName">Gender: </p>
+                  <p name="inputName"><b>Gender:</b>&nbsp {{$a->gender}}</p>
                 </div>
+          @endforeach
+          
             </div>
           </div>
         </div>

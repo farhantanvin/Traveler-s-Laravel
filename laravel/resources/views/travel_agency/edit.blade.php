@@ -11,50 +11,57 @@
         <div class="col-md-6 mx-auto">
           <div class="card card-signin my-4">
             <div class="card-body">
-              <form class="form-signin" method="post">
+              <form class="form-signin" method="post" enctype="multipart/form-data">
+               {{csrf_field()}}
+
+            @foreach($events as $e)
                 <div class="form-label-group my-4">
-                  <input type="text" id="inputTittle" name="inputTittle" class="form-control" placeholder="Tittle" required value="">
-                  <label for="inputTittle">Tittle</label>
+                  <input type="text" id="tittle" name="tittle" class="form-control" placeholder="Tittle" required value="{{$e->title }}">
+                  <label for="tittle">Tittle</label>
                 </div>
 
                 <div class="form-label-group my-4">
-                  <input type="text" id="inputAgency" name="inputAgency" class="form-control" placeholder="Agency Name" required value="">
-                  <label for="inputAgency">Agency Name</label>
+                  <input type="text" id="agencyname" name="agencyname" class="form-control" placeholder="Agency Name" required value="{{$e->agencyname }}">
+                  <label for="agencyname">Agency Name</label>
                 </div>
 
                 <div class="form-label-group my-4">
-                  <input type="text" id="inputPlace" name="inputPlace" class="form-control" placeholder="Place" required value="">
-                  <label for="inputPlace">Place</label>
+                  <input type="text" id="place" name="place" class="form-control" placeholder="Place" required value="{{$e->place }}">
+                  <label for="place">Place</label>
                 </div>
 
                 <div class="form-label-group my-4">
-                  <input type="date" id="inputDate" name="inputDate" min="today" class="form-control" placeholder="Email address" required value="">
-                  <label for="inputDate">Date</label>
+                  <input type="date" id="date" name="date" min="today" class="form-control" placeholder="Date" required value="{{$e->date }}">
+                  <label for="date">Date</label>
                  </div>
 
                 <div class="form-label-group my-4">
-                  <input type="text" id="inputDuration" name="inputDuration" class="form-control" placeholder="Duration" required value="">
-                  <label for="inputDuration">Duration</label>
+                  <input type="text" id="duration" name="duration" class="form-control" placeholder="Duration" required value="{{$e->duration }}">
+                  <label for="duration">Duration</label>
                 </div>
 
                 <div class="form-label-group my-4">
-                  <textarea class="form-control" id="inputDescription" name="inputDescription" placeholder="Description" rows="10" required></textarea>
-                  <label for="inputDescription"></label>
+                  <textarea class="form-control" id="description" name="description" placeholder="Description" rows="10" required>{{$e->description }}</textarea>
+                  <label for="description"></label>
                 </div>
 
                 <div class="form-label-group my-4">
-                  <input type="text" id="inputPerson" name="inputPerson" class="form-control" placeholder="Person Capacity" required value="">
-                  <label for="inputPerson">Person Capacity</label>
+                  <input type="text" id="person" name="person" class="form-control" placeholder="Person Capacity" required value="{{$e->person_capacity }}">
+                  <label for="person">Person Capacity</label>
                 </div>
                 
                 <div class="form-label-group my-4">
-                  <input type="text" id="inputCost" name="inputCost" class="form-control" placeholder="Cost Per Person" required value="">
-                  <label for="inputCost">Cost Per Person</label>
+                  <input type="text" id="cost" name="cost" class="form-control" placeholder="Cost Per Person" required value="{{$e->cost_per_person }}">
+                  <label for="cost">Cost Per Person</label>
                 </div>
 
                 <div class="form-label-group my-4">
-                  <input id="inputImage" name="inputImage" class="form-control" type="file" value="">
+                  <input id="image" name="image" class="form-control" type="file">
+                  <label for="image">/{{$e->image }}</label>
                 </div>
+
+             @endforeach
+
                 <button class="btn btn-lg btn-block my-4" type="submit">Post</button>
               </form>
             </div>

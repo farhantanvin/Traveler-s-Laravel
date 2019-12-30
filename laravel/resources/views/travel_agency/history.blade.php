@@ -13,7 +13,7 @@
             <div class="tile-body">
               <div class="table-responsive">
                 <table class="table table-hover table-bordered" id="sampleTable">
-                  <p>Approved Event</p>
+                  <p><b>Approved Event</b></p>
                   <thead>
                     <tr>
                       <th>Tittle</th>
@@ -28,20 +28,25 @@
                     </tr>
                   </thead>
                   
+
+              @foreach($events as $e)
+
                   <tbody>
                     <tr>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td><img src="" height="65px" width="100px"></td>
+                      <td>{{$e->title }}</td>
+                      <td>{{$e->agencyname }}</td>
+                      <td>{{$e->place }}</td>
+                      <td>{{$e->date }}</td>
+                      <td>{{$e->duration }}</td>
+                      <td>{{$e->description }}</td>
+                      <td>{{$e->person_capacity }}</td>
+                      <td>{{$e->cost_per_person }}</td>
+                      <td><img src="/{{$e->image }}" height="65px" width="100px"></td>
                     </tr>
                   </tbody>
-                  
+
+              @endforeach
+
                 </table>
               </div>
             </div>
@@ -55,7 +60,7 @@
             <div class="tile-body">
               <div class="table-responsive">
                 <table class="table table-hover table-bordered" id="sampleTable">
-                  <p>Declined/Deleted Event</p>
+                  <p><b>Declined/Deleted Event</b></p>
                   <thead>
                     <tr>
                       <th>Tittle</th>
@@ -70,19 +75,23 @@
                     </tr>
                   </thead>
                   
+                  @foreach($event as $ev)
+
                   <tbody>
                     <tr>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td><img src="" height="65px" width="100px"></td>
+                      <td>{{$ev->tittle }}</td>
+                      <td>{{$ev->agencyname }}</td>
+                      <td>{{$ev->place }}</td>
+                      <td>{{$ev->date }}</td>
+                      <td>{{$ev->duration }}</td>
+                      <td>{{$ev->description }}</td>
+                      <td>{{$ev->person_capacity }}</td>
+                      <td>{{$ev->cost_per_person }}</td>
+                      <td><img src="/{{$ev->image }}" height="65px" width="100px"></td>
                     </tr>
                   </tbody>
+
+              @endforeach
                  
 
                 </table>

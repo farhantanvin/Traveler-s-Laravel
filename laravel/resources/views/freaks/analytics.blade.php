@@ -11,9 +11,10 @@
 
       <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
       <a href="{{route('freaks.report')}}"><button class="btn btn-lg btn-block my-4"><strong>Report</strong></button></a>
+      
       <canvas id="pieChart"></canvas>
 
-
+      
 
         <script>
         var ctxP = document.getElementById("pieChart").getContext('2d');

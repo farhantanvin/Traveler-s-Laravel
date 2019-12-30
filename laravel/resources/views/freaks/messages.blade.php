@@ -22,7 +22,7 @@
             @foreach($message as $m)
 
               <div class="alert alert-info">
-                <strong><a href="">"{{$m->sendername}}" </a> </strong>&nbsp  sent you:&nbsp;  <strong>{{$m->text}}</strong>    
+                <strong><a href="">"{{$m->sendername}}" </a> </strong>&nbsp  sent you:&nbsp;  <strong>{{$m->message}}</strong>    
            &nbsp; &nbsp;  &nbsp; at &nbsp; {{$m->date}}
             </div>
             @endforeach

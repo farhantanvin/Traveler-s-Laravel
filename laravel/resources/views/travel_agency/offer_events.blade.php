@@ -11,50 +11,57 @@
         <div class="col-md-6 mx-auto">
           <div class="card card-signin my-4">
             <div class="card-body">
-              <form class="form-signin" method="post">
+              <form class="form-signin" method="post" enctype= "multipart/form-data">
+                {{csrf_field()}}
+
+         
+
                 <div class="form-label-group my-4">
-                  <input type="text" id="inputTittle" name="inputTittle" class="form-control" placeholder="Tittle" required>
-                  <label for="inputTittle">Tittle</label>
+                  <input type="text" id="tittle" name="tittle" class="form-control" placeholder="Tittle" required>
+                  <label for="tittle">Tittle</label>
                 </div>
 
                 <div class="form-label-group my-4">
-                  <input type="text" id="inputAgency" name="inputAgency" class="form-control" placeholder="Agency Name" required>
-                  <label for="inputAgency">Agency Name</label>
+                @foreach($agency as $a)
+                  <input type="text" id="agencyname" name="agencyname" class="form-control" placeholder="Agency Name" required value="{{$a->agency_name}}" >
+                @endforeach
+                  <label for="agencyname">Agency Name</label>
                 </div>
 
                 <div class="form-label-group my-4">
-                  <input type="text" id="inputPlace" name="inputPlace" class="form-control" placeholder="Place" required>
-                  <label for="inputPlace">Place</label>
+                  <input type="text" id="place" name="place" class="form-control" placeholder="Place" required>
+                  <label for="place">Place</label>
                 </div>
 
                 <div class="form-label-group my-4">
-                  <input type="date" id="inputDate" name="inputDate" min="today" class="form-control" placeholder="Email address" required>
-                  <label for="inputDate">Date</label>
+                  <input type="date" id="date" name="date" min="today" class="form-control" placeholder="Email address" required>
+                  <label for="date">Date</label>
                  </div>
 
                 <div class="form-label-group my-4">
-                  <input type="text" id="inputDuration" name="inputDuration" class="form-control" placeholder="Duration" required>
-                  <label for="inputDuration">Duration</label>
+                  <input type="text" id="duration" name="duration" class="form-control" placeholder="Duration" required>
+                  <label for="duration">Duration</label>
                 </div>
 
                 <div class="form-label-group my-4">
-                  <textarea class="form-control" id="inputDescription" name="inputDescription" placeholder="Description" required></textarea>
-                  <label for="inputDescription"></label>
+                  <textarea class="form-control" id="description" name="description" placeholder="Description" required></textarea>
+                  <label for="description"></label>
                 </div>
 
                 <div class="form-label-group my-4">
-                  <input type="text" id="inputPerson" name="inputPerson" class="form-control" placeholder="Person Capacity" required>
-                  <label for="inputPerson">Person Capacity</label>
+                  <input type="text" id="person" name="person" class="form-control" placeholder="Person Capacity" required>
+                  <label for="person">Person Capacity</label>
                 </div>
                 
                 <div class="form-label-group my-4">
-                  <input type="text" id="inputCost" name="inputCost" class="form-control" placeholder="Cost Per Person" required>
-                  <label for="inputCost">Cost Per Person</label>
+                  <input type="text" id="cost" name="cost" class="form-control" placeholder="Cost Per Person" required>
+                  <label for="cost">Cost Per Person</label>
                 </div>
 
                 <div class="form-label-group my-4">
-                  <input id="inputImage" name="inputImage" class="form-control" type="file" style="height: 65px, width=100px">
+                  <input id="image" name="image" class="form-control" type="file" style="height: 65px, width=100px">
                 </div>
+              
                 <button class="btn btn-lg btn-block my-4" type="submit">Post</button>
               </form>
             </div>
@@ -65,5 +72,5 @@
 @endsection
 
 @section('title')
-Offer Events
+Offer Event
 @endsection

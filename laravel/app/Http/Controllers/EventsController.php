@@ -10,10 +10,11 @@ class EventsController extends Controller
 {
     public function index(){
 
-    	$eventCount=event::all()
+    	$eventCount=event::where('status',1)
     			   ->count();
 
-    	$event=event::all();
+    	$event=event::where('status',1)
+    				->get();
 
 
 		return view('events.index')->with('count',$eventCount)

@@ -27,23 +27,28 @@
                     </tr>
                   </thead>
                   
+               @foreach($events as $e)
+
                   <tbody>
                     <tr>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td><img src="" height="65px" width="100px"></td>
+                      <td>{{$e->title}}</td>
+                      <td>{{$e->agencyname}}</td>
+                      <td>{{$e->place}}</td>
+                      <td>{{$e->date}}</td>
+                      <td>{{$e->duration}}</td>
+                      <td>{{$e->description}}</td>
+                      <td>{{$e->person_capacity}}</td>
+                      <td>{{$e->cost_per_person}}</td>
+                      <td><img src="/{{$e->image}}" height="65px" width="100px"></td>
                       <td>
-                        <a href="/travel_agency/edit/"> <button class="btn btn-lg btn-block" type="submit">Edit</button></a>
+                        <a href="{{route('travel_agency.edit', $e->id)}}"> <button class="btn btn-primary btn-lg btn-block" type="submit">Edit</button></a>
                       </td>
                     </tr>
                   </tbody>
-                  
+
+              @endforeach
+
+                    </div>   
                 </table>
               </div>
             </div>
